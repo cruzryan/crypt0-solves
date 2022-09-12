@@ -21,3 +21,13 @@ for i in range(len(kl)):
 print("".join([chr(x) for x in range(len(kl))]))
 
 #crypto{1f_y0u_Kn0w_En0uGH_y0u_Kn0w_1t_4ll}
+
+
+#Solution v2
+k1 = pwn.xor("crypto{".encode(), encrypted_msg)[:len("crypto{")]
+k2 = pwn.xor("}".encode(), encrypted_msg[-1])
+key = k1 + k2
+flag = pwn.xor(key, encrypted_msg)
+
+#Elegant solution
+print(flag)
